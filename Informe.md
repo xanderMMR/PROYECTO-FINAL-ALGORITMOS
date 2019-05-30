@@ -22,7 +22,18 @@ Crear una biblioteca en c++ que permita el almacenamiento de millones de datos y
   **Crear** un nuevo software donde se almacene, guarde y clasifique distintos tipos de dato.
 ### Alcande Proyecto
 ### Marco conceptual
+* Dataframe: Es una estructura que contiene datos tabulares y los almacena mediante filas (rows) y columnas (columns). La forma de un Dataframe es comparable a la de una tabla de Excel, pero los datos contenidos suelen estar indexados. Además, según Balagueró (2018), “cada fila corresponde a un objeto de la muestra y cada columna a una variable”.
+
+* Métodos de ordenamiento: Dentro de la informática, como su mismo nombre lo dice es una forma de ordenar cierto tipo de datos o estructuras de datos, generalmente están basados en algoritmos que sean eficientes a la hora de implementarlos.  Dentro de los algoritmos más conocidos se encuentran Quicksort y Heapsort.
+
+* Métodos de búsqueda: Al igual que los métodos de ordenamiento, las búsquedas son descritas por su mismo nombre, están basadas en algoritmos y existen muchos tipos como la búsqueda secuencial, la cual consiste en encontrar un dato u objeto recorriendo cada elemento hasta encontrarlo. Por otra parte, para realizar la tarea en un tiempo mucho menor se crearon métodos más eficientes como el Binary Search el cual está basado en el lema “divide y vencerás” y tiene una longitud de tiempo logarítmica.
+
+* Diagrama de árboles: Según Ferris y Albert (2019), un árbol o diagrama de árbol “[…] es una colección de elementos llamados nodos, uno de los cuales se distingue como raíz, junto con una relación que impone una estructura jerárquica entre los nodos”. Este diagrama tiene aplicaciones en la estadística, negocios, informática y otros.
+
+
 ### Diagrama de clases (entidades)
 ### Elaborar plan de trabajo detallado
 ### Cronograma
-
+### Referencias
+* Balagueró, A. (2018). ¿Qué son los datasets y los dataframes en el Big Data?. Recuperado de https://www.deustoformacion.com/blog/programacion-diseno-web/que-son-datasets-dataframes-big-data
+* Ferris, R. & Albert, J. (2019). Árboles. Recuperado de http://informatica.uv.es/iiguia/AED/oldwww/2001_02/Teoria/Tema_14.pdf
