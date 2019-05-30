@@ -1,5 +1,8 @@
+Informe Algoritmo y estructura de datos
+=
 Introducción
 -
+
 Problema
 -
 Objetivos
@@ -13,3 +16,4 @@ Diagrama de clases (entidades)
 Elaborar plan de trabajo detallado
 -
 Cronograma
+-
