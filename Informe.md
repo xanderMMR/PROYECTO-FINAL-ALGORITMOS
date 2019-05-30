@@ -1,19 +1,16 @@
 Informe Algoritmo y estructura de datos
 =
-Introducción
+Trabajo Final
 -
+###Integrantes
+*Alexander Moisés Meléndez Ríos
 
-Problema
--
-Objetivos
--
-Alcande Proyecto
--
-Marco conceptual
--
-Diagrama de clases (entidades)
--
-Elaborar plan de trabajo detallado
--
-Cronograma
--
+###Introducción
+###Problema
+###Objetivos
+###Alcande Proyecto
+###Marco conceptual
+###Diagrama de clases (entidades)
+###Elaborar plan de trabajo detallado
+###Cronograma
+
