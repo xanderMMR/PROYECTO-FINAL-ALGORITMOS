@@ -20,7 +20,6 @@ Crear una biblioteca en c++ que permita el almacenamiento de millones de datos y
   **Aplicar** los conocimientos desarrollados en clase para la realización de códigos adaptados a una nueva                                   problemática.
   **Evaluar** los distintos tipos de métodos de ordenamiento y determinar el más óptimo para el desarrollo del proyecto.
   **Crear** un nuevo software donde se almacene, guarde y clasifique distintos tipos de dato.
-### Alcande Proyecto
 ### Marco conceptual
 * Dataframe: Es una estructura que contiene datos tabulares y los almacena mediante filas (rows) y columnas (columns). La forma de un Dataframe es comparable a la de una tabla de Excel, pero los datos contenidos suelen estar indexados. Además, según Balagueró (2018), “cada fila corresponde a un objeto de la muestra y cada columna a una variable”.
 
