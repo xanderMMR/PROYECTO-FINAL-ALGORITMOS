@@ -17,9 +17,9 @@ Crear una biblioteca en c++ que permita el almacenamiento de millones de datos y
 ### Objetivos
 * Objetivo general: Resolver el problema mediante el uso de dataframe y métodos de ordenamiento y búsqueda binaria
 * Objetivo específico:
-  **Aplicar** los conocimientos desarrollados en clase para la realización de códigos adaptados a la nueva                                   problemática.
-  **Evaluar** los distintos tipo de métodos de ordenamiento para seleccionar la más óptima en el desarrollo de nuestro trabajo.
-  **Crear** nuestro propio software donde podremos guardar y clasificar nuestros propios datos.
+  **Aplicar** los conocimientos desarrollados en clase para la realización de códigos adaptados a una nueva                                   problemática.
+  **Evaluar** los distintos tipos de métodos de ordenamiento y determinar el más óptimo para el desarrollo del proyecto.
+  **Crear** un nuevo software donde se almacene, guarde y clasifique distintos tipos de dato.
 ### Alcande Proyecto
 ### Marco conceptual
 ### Diagrama de clases (entidades)
