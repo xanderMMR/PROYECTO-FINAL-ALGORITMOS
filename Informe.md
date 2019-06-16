@@ -31,7 +31,7 @@ Crear una biblioteca en c++ que permita el almacenamiento de millones de datos y
 
 
 ### Diagrama de clases (entidades)
-![DiagramaClases](DiagramaClases.jpg)
+![DiagramaClases](DiagramadeClases.jpg)
 ### [Elaborar plan de trabajo detallado](https://github.com/xanderMMR/PROYECTO-FINAL-ALGORITMOS/milestones)
 ### Cronograma
 ### Referencias
