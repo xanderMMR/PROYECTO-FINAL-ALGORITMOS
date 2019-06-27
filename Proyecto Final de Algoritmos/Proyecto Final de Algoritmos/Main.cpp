@@ -2,37 +2,35 @@
 
 
 int main() {
+	vector<DataFrame*>dfs;
 	DataFrame *dt;
+	string str;
+
 	int x;
 	menuPrincipal(x);
 
 
-	while (x != 0) {
+	do {
 		switch (x) {
+
 		case 1:
-			dt->importarDatos(x);
-			break;
-		
+			dt->cargarDataFrame(str, x); break;
 
 		case 2:
-			dt->imprimirDatos(x);
-
-				; break;
+			dt->imprimirDatos(x, str); break;
 		case 3:
-			dt->listarDataFrame(x);
-			break;
+			dt->listarDataFrame(x);	break;
 
 		case 4:
-			dt->guardarDatos(x);
+			dt->guardarDatos(dfs, x);
 			break;
 		case 5: dt->indexar(x);
 			break;
-		case 6: 
-			dt->nuevoDataFrame(x);
+		case 6: dt->nuevoDataFrame(x);
 			break;
 		case 0: break;
 		}
-	}
+	} while (x != 0);
 	system("pause");
 
 	return  0;

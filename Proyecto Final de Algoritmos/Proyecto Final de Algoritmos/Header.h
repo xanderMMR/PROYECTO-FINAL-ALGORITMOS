@@ -1,7 +1,13 @@
 #pragma once
 #include <iostream>
-#include <string.h>
 #include <string>
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <sstream>
+#include <map>
+#include <functional>
+#include <algorithm>
 using namespace std;
 using namespace System;
 
@@ -47,14 +53,97 @@ void menuPrincipal(int &x) {
 
 }
 
-class Columna
-{
-	int valor;
-	string atributo;
-	
+
+
+template <typename T, typename R = T>
+class AVLTree {
+	struct Node {
+		T e;
+		Node* l;
+		Node* r;
+		int h;
+		Node(T e) : e(e), l(nullptr), r(nullptr), h(0) {}
+
+		static int  height(Node* n) {
+			return n == nullptr ? -1 : n->h;
+		}
+
+		void updateH() {
+			h = std::max(Node::height(l), Node::height(r)) + 1;
+		}
+	};
+	Node *root;
+	int lenght;
+	std::function<R(T)>key;
+
+	void destroy(Node* n) {
+		if (n != nullptr) {
+			detroy(n->l);
+			destroy(n->r);
+			delete n;
+		}
+	}
+
+	void rotAB(Node *& n) {
+		Node*aux = n->l;
+		n->l = aux->r;
+		n->updateH();
+		aux->r = n;
+		n = aux;
+		n->updateH();
+	}
+	void rotBA(Node*&n) {
+		Node* aux = n->r;
+		n->r = aux->l;
+		n->updateH();
+		aux->l = n;
+		n = aux;
+		n->updateH();
+	}
+	void balance(Node *&n)
+	{
+		int delta = Node::height(n->l) - Node::height(n->r);
+		if (delta < -1) {
+			if (Node::height(n->r->l) > Node::height(n->r->r)) {
+				rotAB(n->r);
+			}
+			rotBA(n);
+		}
+		else if (delta > 1) {
+			if (Node::height(n->l->r) > Node::height(n->l->l)) {
+				rotBA(n->l);
+			}
+			rotAB(n);
+		}
+	}
+	void add(Node*& n, T e) {
+		if (n = nullptr) {
+			n = new Node(e);
+			return;
+		}
+		else if (key(e) < key(n->e)) {
+			add(n->l, e);
+		}
+		else {
+			add(n->r, e);
+		}
+		balance(n);
+		n->updateH();
+	}
 public:
-	Columna() {};
-	~Columna() {};
+	AVLTree(function<R(T)>key = [](T a) { return a;  }) : root(nullptr), lenght(0), key(key) {}
+	~AVLTree() { destroy(root); }
+
+	int Height() {
+		return Node::height(root);
+	}
+	int Size() {
+		return lenght();
+	}
+	void Add(T e) {
+		add(root, e);
+		++lenght;
+	}
 
 
 };
@@ -62,40 +151,142 @@ public:
 
 class Fila
 {
-private:
-	int id;
+	int idx;
+	
 public:
-	Fila() {};
-	~Fila() {};
+	Fila() {
+	}
 
+	string getData(string name) {
+	}
+	void agregarDato(string dato) {}
 
 };
 
 class DataFrame
 {
-		
-	Fila*fila;
-	Columna*columna;
+	vector<Fila*> arrDato;
+	vector<AVLTree<float> *> treeFloat;
+	vector<AVLTree<string> *> treeString;
+	vector<string> nombreColumna;
+	int cantidadDatos = 0;
+	int cantidadColumnas = 0;
 
 public:
-	DataFrame() {};
-	~DataFrame() {};
-	void importarDatos(int &x){
-		Console::ForegroundColor = ConsoleColor::Yellow;
-		string str;
-		cout << "Importe sus datos (Nombre del archivo): ";
-		cin >> str;
-		cout << "Archivo importado exitosamente"<<endl;
-		system("pause>NULL");
-		menuPrincipal(x);
-		
+	DataFrame* select(vector<string>colNames) {
+		/*	colmap* nCols = new colmap();
+		for (auto cn : colNames) {
+		nCols[cn] = cols[cn];
+		}
+		DataFrame * nDF(nCols);
+		nDF->fil = this->fil;*/
 	}
-	void imprimirDatos(int &x) {
-		Console::ForegroundColor = ConsoleColor::Yellow;
-		cout << "Imprimiendo Datos: " << endl;
+	~DataFrame() {};
+	void aparecerMenu(int &x) {
 		system("pause>NULL");
 		menuPrincipal(x);
-}
+	}
+	int tamañoCol(string str) {
+		ifstream archivo(str);
+		vector < AVLTree<string>*> df;
+		int cont = 0;
+		while (getline(archivo, str)) {
+			stringstream ss(str);
+			while (getline(ss, str, ',')) {
+				df.push_back(new AVLTree<string>());
+				cont++;
+			}break;
+		}
+		return cont;
+	}
+
+	/*void nombreColumnas( string str) {
+	ifstream archivo;
+	string * r = new string[tamañoCol(str)];
+	vector<string>nombreCol;
+	cout << endl;
+	for (int i = 0; i < tamañoCol(str); i++) {
+	r[i] = "Columna";
+	}
+
+
+	stringstream ss(str);
+	while (getline(ss, str, ',')) {
+	for (int i = 0; i < tamañoCol(str); i++) {
+	cout << r[i]<<"\t";
+	}
+
+	}
+	}
+	*/
+	void cargarDataFrame(string &str, int &x) {
+		Console::ForegroundColor = ConsoleColor::Yellow;
+		cout << "Nombre archivo: "; cin >> str;
+		ifstream archivo;
+		tamañoCol(str);
+		cout << tamañoCol(str);
+
+
+		//agrega elementos a cada arbol
+
+		ifstream file;
+		file.open(str);
+		char separador;
+		cout << "Ingrese el separador: ";
+		cin >> separador;
+
+		//Variables
+		string linea;
+		string dato;
+
+		int cont{ 0 };
+		int j{ 0 };
+		int k{ 0 };
+		while (getline(file, linea))
+		{
+			stringstream ss(linea);
+			arrDato.push_back(new Fila());
+			for (int i{ 0 }; i < tamañoCol(linea); ++i)
+			{
+				getline(ss, dato, separador);
+				arrDato.at(cont)->agregarDato(dato);
+
+				if (isdigit(dato[0]))
+				{
+					float num = stof(dato);
+					treeFloat[j]->Add(num);
+					++j;
+				}
+				else
+				{
+					treeString[k]->Add(dato);
+					++k;
+				}
+				//tree.at[cont].insertarData(arrDato[cont], dato);
+			}
+			j = 0;
+			k = 0;
+			++cantidadDatos;
+			++cont;
+		}
+		system("pause>NULL");
+		menuPrincipal(x);
+	}
+	void imprimirDatos(int &x, string &str) {
+		Console::ForegroundColor = ConsoleColor::Yellow;
+		vector<string>nam;
+		ifstream archivo;
+		cout << endl;
+
+		archivo.open(str);
+		while (!archivo.eof()) {
+			getline(archivo, str, ',');
+			cout << str << "\t";
+
+		}		archivo.close();
+		system("pause>NULL");
+		menuPrincipal(x);
+	}
 	void listarDataFrame(int &x) {
 		Console::ForegroundColor = ConsoleColor::Yellow;
 		cout << "DataFrame 1: " << endl;
@@ -103,20 +294,23 @@ public:
 		cout << "DataFrame 2: " << endl;
 		system("pause>NULL");
 		menuPrincipal(x);
-		}
-
-	void guardarDatos(int &x) {
-		Console::ForegroundColor = ConsoleColor::Yellow;
-		int y;
-		cout << "Indique el # DataFrame: "; cin >> y;
-		cout << endl;
-		Console::ForegroundColor = ConsoleColor::Yellow;
-		cout << "DataFrame Guardado Exitosamente" << endl;
-		system("pause>NULL");
-		menuPrincipal(x);
 	}
 
-	void indexar(int &x){
+	void guardarDatos(vector<DataFrame*>&dfs, int &x) {
+		Console::ForegroundColor = ConsoleColor::Yellow;
+		int i;
+		string name;
+		do {
+			cout << "Seleccionar un DF [del 1 al " << dfs.size() << "]";
+			cin >> i; --i;
+		} while (i < 0 || i >= dfs.size());
+		cout << "Nombre del archivo: ";
+		cin.get();
+		getline(cin, name);
+		aparecerMenu(x);
+	}
+
+	void indexar(int &x) {
 		Console::ForegroundColor = ConsoleColor::Yellow;
 		int y;
 		int w;
@@ -137,25 +331,25 @@ public:
 		cout << endl;
 		cout << "Elegir opcion: "; cin >> y;
 		switch (y) {
-		case 1: 
+		case 1:
 		{string f;
 		cout << "Nombre del archivo: "; cin >> f;
 		system("pause>NULL");
 		menuPrincipal(x); }
-			break;
+		break;
 		case 2: {
 			operaciones(x);
 			system("pause>NULL");
 			menuPrincipal(x);
 
 		}
-			break;
+				break;
 		}
 
 
 	}
 	void operaciones(int &x) {
-		cout << "1. Ordenar" << endl;
+		cout << "1. Ordenar" << endl;;
 		cout << "2. Filtrar" << endl;
 		cout << "3. Seleccionar" << endl;
 		int y;
@@ -165,10 +359,14 @@ public:
 		case 2: filtrar(x); break;
 		case 3: seleccionar(x); break;
 		}
-	
-	
+
+
 	}
-	void ordenar(int &x){
+	DataFrame* seleccionar(vector<string>arbol) {
+		AVLTree<string>* ncol = new AVLTree<string>();
+
+}
+	void ordenar(int &x) {
 		cout << "Datos ordenados " << endl;
 		system("pause>NULL");
 		menuPrincipal(x);
@@ -178,7 +376,7 @@ public:
 		system("pause>NULL");
 		menuPrincipal(x);
 	}
-	void seleccionar(int &x){
+	void seleccionar(int &x) {
 		cout << "Datos ordenados " << endl;
 		system("pause>NULL");
 		menuPrincipal(x);
