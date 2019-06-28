@@ -32,8 +32,6 @@ Crear una biblioteca en c++ que permita el almacenamiento de millones de datos y
 
 ### Diagrama de clases (entidades)
 ![DiagramaClases](DiagramadeClases.jpg)
-### [Elaborar plan de trabajo detallado](https://github.com/xanderMMR/PROYECTO-FINAL-ALGORITMOS/milestones)
-### Cronograma
 ### Referencias
 * Balagueró, A. (2018). ¿Qué son los datasets y los dataframes en el Big Data?. Recuperado de https://www.deustoformacion.com/blog/programacion-diseno-web/que-son-datasets-dataframes-big-data
 * Ferris, R. & Albert, J. (2019). Árboles. Recuperado de http://informatica.uv.es/iiguia/AED/oldwww/2001_02/Teoria/Tema_14.pdf
